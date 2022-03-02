@@ -16,7 +16,7 @@ managedNodeGroups:
     spot: true
     ssh:
       allow: true
-      publicKeyPath: ~/.ssh/ec2_id_rsa.pub   
+      publicKeyPath: muchezz 
     labels: {env: dev}
     tags:
       costid: devops
