@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-node-app
+  namespace: development
+  labels:
+    app: kubernetes-node-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubernetes-node-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: kubernetes-node-app
+    spec:
+      containers:
+      - name: kubernetes-node-app
+        image: repo-image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        
