@@ -68,7 +68,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Create cluster
+    - name: installing dependecies
       working-directory: cluster
       id: create-cluster
       run: |
@@ -77,6 +77,10 @@ jobs:
         sudo chmod +x ./make.sh
         ./make.sh 
 
+    - name: Create cluster
+      working-directory: cluster
+      id: create-cluster
+      run: |
         sudo chmod +x create-cluster.sh
         ./create-cluster.sh
 
