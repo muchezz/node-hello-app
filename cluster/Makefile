@@ -13,8 +13,8 @@ cluster-delete: # delete the EKS cluster
 	./make.sh cluster-delete
 
 
-install:
+install-kubectl: # install kubectl
 	# This should be run from inside a virtualenv
 	
 	chmod +x ./make.sh
-	./make.sh 
+	./make.sh install-kubectl
