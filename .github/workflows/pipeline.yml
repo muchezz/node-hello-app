@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+defaults:
+  run:
+    working-directory: ~/
 
 env: 
   AWS_REGION: us-west-2
@@ -62,11 +64,10 @@ jobs:
     name: Create an EKS on Fargate cluster
     steps:
     - name: Create cluster
-      # working-directory: cluster
+      working-directory: cluster
       id: create-cluster
       run: |
         pwd
-        cd cluster
         sudo chmod +x create-cluster.sh
         ./create-cluster.sh
 
