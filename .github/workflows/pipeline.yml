@@ -68,9 +68,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: installing dependecies
+    - name: installing dependencies
       working-directory: cluster
-      id: create-cluster
+      id: install-dependencies
       run: |
         pwd
         ls -la
