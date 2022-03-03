@@ -64,8 +64,12 @@ jobs:
     #   run:
     #     working-directory: ~/
     steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Create cluster
-      # working-directory: cluster
+      working-directory: cluster
       id: create-cluster
       run: |
         pwd
