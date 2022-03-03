@@ -74,8 +74,9 @@ jobs:
       run: |
         pwd
         ls -la
-        make install-eksctl
-        make install-kubectl
+        sudo chmod +x ./make.sh
+        ./make.sh 
+
         sudo chmod +x create-cluster.sh
         ./create-cluster.sh
 
