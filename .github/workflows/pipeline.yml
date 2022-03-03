@@ -62,6 +62,8 @@ jobs:
     name: Create an EKS on Fargate cluster
     steps:
     - name: Create cluster
+      working-directory: ./cluster
+      id: create-cluster
       run: |
         sudo chmod +x create-cluster.sh
         ./create-cluster.sh
