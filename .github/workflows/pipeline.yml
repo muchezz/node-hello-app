@@ -66,6 +66,7 @@ jobs:
       id: create-cluster
       run: |
         pwd
+        cd cluster
         sudo chmod +x create-cluster.sh
         ./create-cluster.sh
 
