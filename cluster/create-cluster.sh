@@ -30,7 +30,9 @@ aws iam create-role --role-name AmazonEKSFargatePodExecutionRole --assume-role-p
 aws iam attach-role-policy --role-name AmazonEKSFargatePodExecutionRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy
 
 #create the EKS Fargate cluster
-eksctl create cluster --name $CLUSTER_NAME --version 1.18 --fargate --ssh-access=true --ssh-public-key=ponea-eks --managed --spot --name spot-4vcpu-16gb --asg-access --nodes-max 20
+echo "Provisioning EKS on Fargate cluster $CLUSTER_NAME in $AWS_REGION"
+
+eksctl create cluster --name $CLUSTER_NAME --fargate --ssh-access=true --ssh-public-key=ponea-eks --managed --spot --asg-access --nodes-max 20
 
 #https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
 #https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
