@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECS
+name: Deploy to Amazon EKS cluster running on AWS Fargate
 
 on:
   push:
@@ -63,6 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     name: Create an EKS on Fargate cluster
+    env:
+        ecr_image: ${{ jobs.build.outputs.imageName }}
     # defaults:
     #   run:
     #     working-directory: ~/
@@ -115,7 +117,7 @@ jobs:
       id: deploy-k8s-yaml
       env:
         K8S_YAML_DIR: ./k8s
-        IMAGE_NAME: ${{ needs.build.outputs.imageName}}
+        IMAGE_NAME: ${{ env.ecr_image}}
       run: |
         # Setup kustomize
         cd $K8S_YAML_DIR
@@ -128,17 +130,6 @@ jobs:
         # List Public IP of cluster
         kubectl get services -o wide
         kubectl get ingress
-
-
-
-
-
-
-
-
-
-
-
 
 
 
