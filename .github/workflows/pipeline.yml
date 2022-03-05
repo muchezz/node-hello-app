@@ -55,6 +55,9 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+    outputs:
+        imageName: ${{ steps.build-image.outputs.image }} 
+
 
   create_cluster:
     runs-on: ubuntu-latest
@@ -112,7 +115,7 @@ jobs:
       id: deploy-k8s-yaml
       env:
         K8S_YAML_DIR: ./k8s
-        IMAGE_NAME: ${{ needs.build.steps.build-image.outputs.image }}
+        IMAGE_NAME: ${{ needs.build.outputs.imageName}}
       run: |
         # Setup kustomize
         cd $K8S_YAML_DIR
