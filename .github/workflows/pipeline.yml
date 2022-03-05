@@ -103,10 +103,10 @@ jobs:
     - name: Setup kubeconfig
       id: setup-kubeconfig
       env:
-        EKS_CLUSTER_NAME: kubernetes-node-app
+        CLUSTER_NAME: kubernetes-node-app
         
       run: |
-        aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
+        aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
 
     - name: Deploy k8s yaml
       id: deploy-k8s-yaml
