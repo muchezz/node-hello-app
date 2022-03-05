@@ -64,7 +64,7 @@ jobs:
     needs: build
     name: Create an EKS on Fargate cluster
     env:
-        ecr_image: ${{ job.build.outputs.imageName }}
+        ecr_image: ${{ needs.build.outputs.imageName }}
 
     steps:
     - name: Checkout
